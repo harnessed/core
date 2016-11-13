@@ -23,7 +23,11 @@ Rails.application.configure do
   else
     config.action_controller.perform_caching = false
 
-    config.cache_store = :null_store
+    #config.cache_store = :null_store
+
+    # Address the Auth0 session overflow issue
+    config.cachestore = :memorystore
+
   end
 
   # Don't care if the mailer can't send.
@@ -51,4 +55,5 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
 end
