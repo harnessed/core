@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   # Set the homepage
   root 'homepage#index'
 
@@ -9,6 +9,14 @@ Rails.application.routes.draw do
 
   # Page routes
   get 'dashboard', to: 'dashboard#index'
+  get 'dashboard/logout', to: 'dashboard#logout'
   get 'homepage/index'
+
+  # Subpage routes
+  get 'costs', to: 'subpages#costs'
+  get 'movements', to: 'subpages#movements'
+  get 'organizations', to: 'subpages#organizations'
+  get 'profile', to: 'subpages#profile'
+  get 'stats', to: 'subpages#stats'
 
 end

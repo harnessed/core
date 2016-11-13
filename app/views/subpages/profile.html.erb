@@ -1,0 +1,10 @@
+<h1>Welcome, <%= @user['info']['name'] %></h1>
+
+<ul>
+	<li>Profile image: <img class="avatar" src="<%= @user['info']['image'] %>"/></li>
+	<li>Name: <%= @user['info']['name'] %></li>
+	<li>Screenname: <%= @user['info']['nickname'] %></li>
+	<li>User ID: <%= @user['uid'] %></li>
+	<li>Date you joined: <%= @user['extra']['raw_info']['created_at'] %></li>
+	<li>Location: <%= @user['info']['location'] %></li>
+</ul>
