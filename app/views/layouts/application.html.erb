@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Core</title>
+    <title>Harnessed.io</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,21 +9,49 @@
   </head>
 
   <body>
-    <%= yield %>
 
-<script src="https://cdn.auth0.com/js/lock/10.4/lock.min.js"></script>
-<script>
-var lock = new Auth0Lock('Mf1bqvDxrPJWxEZ1oU8AB3ozqfazSEi7', 'harnessed.auth0.com', {
-auth: {
-  redirectUrl: 'http://localhost:3000/auth/auth0/callback',
-  responseType: 'code',
-  params: {
-    scope: 'openid email' // Learn about scopes: https://auth0.com/docs/scopes
-  }
-}
-});
-</script>
-<button onclick="lock.show();">Login</button>
+    <script src="https://cdn.auth0.com/js/lock/10.4/lock.min.js"></script>
+    <script>
+    var lock = new Auth0Lock('Mf1bqvDxrPJWxEZ1oU8AB3ozqfazSEi7', 'harnessed.auth0.com', {
+    auth: {
+      redirectUrl: 'http://localhost:3000/auth/auth0/callback',
+      responseType: 'code',
+      params: {
+        scope: 'openid email' // Learn about scopes: https://auth0.com/docs/scopes
+      }
+    }
+    });
+    </script>
+
+    
+    <div class="navigation">
+      <ul>
+        <% if session[:userinfo].nil? %>
+          <li><a onclick="lock.show(); return false;" href="/">Login</a></li>
+        <% else %>
+          <li><a href="/dashboard">Dashboard</a></li>
+          <li><a href="/profile">Profile</a></li>
+          <li><a href="/movements">Movements</a></li>
+          <li><a href="/organizations">Organizations</a></li>
+          <li><%= link_to "Log Out", { :controller => "dashboard", :action => "logout"} %></li>
+        <% end %>
+      </ul>
+    </div>
+    
+    <div class="main_container">
+      <%= yield %>
+    </div>
+
+    <div class="footer">
+      <ul>
+        <li>&copy; 2016 Harnessed</li>
+      <% if session[:userinfo].present? %>
+        <li><a href="/stats">Stats</a></li>
+        <li><a href="/costs">Cost Tracker</a></li>
+      <% end %>
+    </ul>
+    </div>
+
 
 
   </body>
