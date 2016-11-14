@@ -4,6 +4,13 @@ class SubpagesController < ApplicationController
   end
 
   def costs
+    # Redirect user to homepage if they haven't logged in
+    unless session[:userinfo].present?
+      redirect_to '/'
+    end
+
+    # Display the user's credentials
+    @user = session[:userinfo]
   end
 
   def movements
@@ -37,6 +44,13 @@ class SubpagesController < ApplicationController
   end
 
   def stats
+    # Redirect user to homepage if they haven't logged in
+    unless session[:userinfo].present?
+      redirect_to '/'
+    end
+
+    # Display the user's credentials
+    @user = session[:userinfo]
   end
 
 
