@@ -61,14 +61,15 @@
 
       <%= yield %>
 
-      <div class="footer">
-        <ul>
-          <li>&copy; 2016 Harnessed</li>
-        <% if session[:userinfo].present? %>
-          <li><a href="/stats">Stats</a></li>
-          <li><a href="/costs">Cost Tracker</a></li>
-        <% end %>
-        </ul>
+
+
+      <div class="row">
+        <div class="col-md-6">&copy; 2016 Harnessed | Harnessed.io is an <a href="https://github.com/harnessed/core">open source</a> project by <a href="https://twitter.com/n_warren">Nick Warren</a></div>
+        <div class="col-md-6" style="text-align:right;">
+          <% if session[:userinfo].present? %>
+            <a href="/stats">Stats</a> | <a href="/costs">Cost Tracker</a>
+          <% end %>
+        </div>
       </div>
 
 
